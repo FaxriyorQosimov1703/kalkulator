@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- <main>
+
+        <input type="number" value="0" id="result" >
+        <div class="keys">
+            <button class="op__key" onclick="Clear()">C</button>
+            <button class="op__key" onclick="bajar('+/-')">+/-</button>
+            <button class="op__key" onclick="bajar('%')">%</button>
+            <button class="op__key" onclick="bajar('/')">/</button>
+            <button class="num__key" onclick="son('7')">7</button>
+            <button class="num__key" onclick="son('8')">8</button>
+            <button class="num__key" onclick="son('9')">9</button>
+            <button class="op__key" onclick="bajar('*')">x</button>
+            <button class="num__key" onclick="son('4')">4</button>
+            <button class="num__key" onclick="son('5')">5</button>
+            <button class="num__key" onclick="son('6')">6</button>
+            <button class="op__key" onclick="bajar('-')">-</button>
+            <button class="num__key" onclick="son('1')">1</button>
+            <button class="num__key" onclick="son('2')">2</button>
+            <button class="num__key" onclick="son('3')">3</button>
+            <button class="op__key" onclick="bajar('+')">+</button>
+            <button class="num__key" onclick="larr('&larr;')">&larr;</button>
+            <button class="num__key" onclick="son('0')">0</button>
+            <button class="num__key" onclick="son('.')">.</button>
+            <button class="eq__key" onclick="Equal()">=</button>
+        </div>
+    </main> -->
+
+    <div class="wrapper">
+        <div class="box">
+            <input type="text" class="input" id="result" readonly name="text" value="0">
+            <div class="buttons">
+                <button type="button" class="btn bg-orange" onclick="">deg</button>
+                <button type="button" class="btn bg-orange" onclick="trig('sin')">sin</button>
+                <button type="button" class="btn bg-orange" onclick="trig('cos')">cos</button>
+                <button type="button" class="btn bg-orange" onclick="trig('tg')">tg</button>
+                <button type="button" class="btn bg-orange" onclick="trig('ctg')">ctg</button>
+
+                <button type="button" class="btn" onclick="pow2()">x <p class="upper">2</p></button>
+                <button type="button" class="btn" onclick="log('lg')">lg</button>
+                <button type="button" class="btn" onclick="log('ln')">ln</button>
+                <button type="button" class="btn" onclick="raqam('(')">(</button>
+                <button type="button" class="btn" onclick="raqam(')')">)</button>
+
+
+                <button type="button" class="btn" onclick=" sqrt()">&radic;x</button>
+                <button type="button" class="btn bg-orange" onclick="Clear('C')">C</button>
+                <button type="button" class="btn bg-orange" onclick="orqaga()">&lArr;</button>
+                <button type="button" class="btn bg-orange percent" onclick="percent()">%</button>
+                <button type="button" class="btn bg-orange divide" onclick="hisobla('/')">&divide;</button>
+
+
+                <button type="button" class="btn" onclick="pow1()">x <p class="upper">-1</p></button>
+                <button type="button" class="btn" onclick="raqam('7')">7</button>
+                <button type="button" class="btn" onclick="raqam('8')">8</button>
+                <button type="button" class="btn" onclick="raqam('9')">9</button>
+                <button type="button" class="btn bg-orange" onclick="hisobla('*')">&times;</button>
+
+                <button type="button" class="btn" onclick="daraja('`')">x <p class="upper">y</p></button>
+                <button type="button" class="btn" onclick="raqam('4')">4</button>
+                <button type="button" class="btn" onclick="raqam('5')">5</button>
+                <button type="button" class="btn" onclick="raqam('6')">6</button>
+                <button type="button" class="btn bg-orange" onclick="hisobla('-')">-</button>
+
+                <button type="button" class="btn" onclick="fact()">x!</button>
+                <button type="button" class="btn" onclick="raqam('1')">1</button>
+                <button type="button" class="btn" onclick="raqam('2')">2</button>
+                <button type="button" class="btn" onclick="raqam('3')">3</button>
+                <button type="button" class="btn bg-orange" onclick="hisobla('+')">+</button>
+
+                <button class="btn" onclick="pi()">&prod;</button>
+                <button class="btn" onclick="e()">e</button>
+                <button type="button" class="btn" onclick="raqam('0')">0</button>
+                <button type="button" class="btn" onclick="raqam('.')">.</button>
+                <button type="button" class="btn active" onclick="Equal()">=</button>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+<script>
+
+    let input = document.querySelector('#result');
+    // -------------------------------------------------------------------------Clear----------------------------------------------------
+    function Clear() {
+        input.value = '';
+        if (input.value == 0) {
+            input.value = '0';
+        }
+    }
+    // --------------------------------------------------------------------------raqam kiritish-------------------------------------------
+    function raqam(x) {
+        if (input.value == 0) {
+            input.value = '';
+            input.value += x;
+        } else {
+            input.value += x;
+        }
+
+
+    }
+    // -------------------------------------------------------------------------hisoblash------------------------------------------
+    function hisobla(j) {
+        input.value += ' ' + j + ' ';
+
+    }
+    // ------------------------------------------------------------------------Back---------------------------------------------
+    function orqaga() {
+        let man = input.value;
+        input.value = man.substring(0, man.length - 1);
+        if (input.value == 0) {
+            input.value = '0';
+        }
+    }
+    // ---------------------------------------------------------------------Equal---------------------------------------------------------
+    function Equal() {
+        let sen = input.value;
+        if (sen) {
+            input.value = eval(sen);
+        }
+
+    }
+    // -----------------------------------------------------------------------%--------------------------------------------------------
+    function percent() {
+        input.value = eval(input.value) / 100;
+    }
+    // --------------------------------------------------------------------PI---------------------------------------------------------------
+    function pi() {
+        if (input.value == 0) {
+            input.value = '';
+        }
+        input.value += Math.PI.toFixed(2);
+    }
+    // ------------------------------------------------------------------------E----------------------------------------------------
+    function e() {
+        if (input.value == 0) {
+            input.value = '';
+        }
+        input.value += Math.E.toFixed(2);
+    }
+
+
+    // ----------------------------------------------------------PI va E ni bitta funksiyaga olish--------------------------------------
+
+    // function conastant(name) {
+    //     if(input.value == 0) {
+    //         input.value = '';
+    //     }
+    //     if(name == 'pi'){
+    //         input.value += Math.PI.toFixed(2);
+    //     }
+    //     if(name == 'e') {
+    //         input.value += Math.PI.toFixed(2);
+    //     }
+    // }
+
+    // ----------------------------------------------------------------pow2---------------------------------------------------------------
+
+    function pow2() {
+        input.value = Math.pow(eval(input.value), 2);
+    }
+// -----------------------------------------------------------------------sqrt----------------------------------------------------------
+    function sqrt() {
+        input.value = Math.sqrt(eval(input.value));
+    }
+// -----------------------------------------------------------------------pow-1---------------------------------------------------------
+    function pow1() {
+        input.value = Math.pow(eval(input.value), -1).toFixed(4);
+    }
+// ----------------------------------------------------------------------log va ln-----------------------------------------------------
+    function log(name) {
+        if(name == 'lg'){
+
+            input.value = Math.log10(eval(input.value)).toFixed(5);
+        }
+        if(name == 'ln') {
+            input.value = Math.log(eval(input.value)).toFixed(5);
+        }
+    }
+// ----------------------------------------------------------------------sin va cos tg ctg ------------------------------------------------
+
+    function trig(name) {
+        if(name == 'sin') {
+            input.value = parseFloat(Math.sin(eval(input.value)/180*Math.PI).toFixed(8));
+        }
+        if(name == 'cos') {
+            input.value = parseFloat(Math.cos(eval(input.value)/180*Math.PI).toFixed(8));
+        }
+        if(name == 'tg') {
+            input.value = parseFloat(Math.tan(eval(input.value)/180*Math.PI).toFixed(8));
+        }
+        if(name == 'ctg') {
+            input.value = parseFloat(Math.trunc(eval(input.value)/180*Math.PI).toFixed(8));
+        }
+    }
+
+    // function fact() {
+    //     let n = input.value;
+    //     input.value *= n.substring(1, n-1)
+    // }
+    
+    // function daraja(z) {
+    //     let nem = input.value;
+    //     input.value += z;
+       
+    // }
+
+
+        // if (name = '-1') {
+        //      input.value = Math.pow(eval(input.value), -1);
+        // }
+        // if(name = 'xy') {
+        //     // input.value += xy; 
+        // }
+
+    
+
+
+
+
+
+
+
+        // function raqam(x) {
+        //     document.getElementById('result').value +=x;
+        // }
+
+        // function Clear() {
+        //     document.getElementById('result').value ='';
+        // }
+
+        // function orqaga() {
+        //     let bn = document.getElementById('result').value;
+        //     document.getElementById('result').value = bn.substring(0, bn.length-1);
+        // }
+
+        // function hisobla(j) {
+        //      document.getElementById('result').value += ''+j+'';
+        // }
+
+        // function Equal() {
+        //     let bn = document.getElementById('result').value;
+        //     if(bn) {
+        //         document.getElementById('result').value = eval(bn);
+        //     }
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let raqam1 = x;
+    // let raqam2 = '';
+
+    // function hisobla(j) {
+    //     document.getElementById('result').value += saqla1;
+    //     if(x == '+'){
+    //         let saqlaAll = parseInt(raqam1)+ parseInt(raqam2);
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // function son(x) {
+        //     // document.getElementById('result').value = x;
+
+        //     document.getElementById('result').value +=x;
+
+        //     // var result = document.querySelector('#result');
+        //     // result.value +=x;
+        // }
+
+        // function Clear() {
+        //     document.getElementById('result').value = '';
+        // }
+
+
+
+        // function larr() {
+        //     document.getElementById('result').value = exp.substring(0, exp.length-1);
+        // }
+
+        // let amal = '';
+        // let son1 = '';
+        // let son2 = '';
+        // let natija = '';
+
+        // function bajar(j) {
+
+        //     switch(j) {
+        //         case '+':
+        //             amal = '+';
+
+        //             break;
+        //         case '-':
+        //             amal = '-'
+        //             break;
+        //         case '*':
+        //             amal ='*'
+        //             break;
+        //         case '/':
+        //            amal = '/'
+        //             break;
+        //         default:
+        //             amal = '%'
+        //             break;
+
+
+        //     }
+        //     son1 = document.getElementById('result').value;
+        //     document.getElementById('result').value +=j;    
+        // }
+
+        // function Equal() {
+            // son2 = document.getElementById('result').value;
+
+        //     if(amal == '+'){
+        //         // amal = document.getElementById('result').value;
+        //         natija = parseInt(son1) + parseInt(son2);
+
+        //     }else if(amal == '-') {
+
+        //         natija = son1 - son2;
+
+        //     }else if(amal == '*') {
+
+        //         natija = son1 * son2;
+
+
+
+        //     }else if(amal == '/') {
+
+        //         natija = son1 / son2;
+
+        //     }else if(amal == '%') {
+
+        //         natija = son1 * (son2/100);
+
+        //     }else {
+
+        //        natija = son1- son2;
+
+        //     }
+        //     document.getElementById('result').value = natija;
+        //     console.log(natija);
+        // }
+
+        //     var result = document.querySelector('#result');
+
+        // document.querySelectorAll('button').forEach(function(btn) {
+        //     btn.addEventListener('click', function(e) {
+        //         var belgi = e.target.innerText;
+        //         result.value = belgi;
+        //     })
+        // })
+</script>
+
+</html>
